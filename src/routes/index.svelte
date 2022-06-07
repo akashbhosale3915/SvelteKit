@@ -1,14 +1,10 @@
 <script>
 	import { posts } from '../stores';
 	import { onMount } from 'svelte';
-	const getData = async () => {
-		let res = await fetch('https://jsonplaceholder.typicode.com/posts');
-		res = await res.json();
-		await posts.set(res);
-	};
+	import { getData } from '../helpers';
+
 	onMount(() => {
-		getData();
-		console.log($posts, 'asasas', 'asasassa', 'sasasassa');
+		getData().then((data) => posts.set(data));
 	});
 </script>
 
